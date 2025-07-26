@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Events</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Amazing Images</h2>
+  <div>
+      <ul id="images">
+        <li>
+          <img src="https://picsum.photos/200/300?random=1" alt="Random Image 1" />
+          <!-- <p>Image 1</p> -->
+        </li>
+        <li>
+          <img width="200px" id="nature" src="https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="nature" />
+        </li>
+        <li>
+          <img width="200px" id="city" src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="city" />
+        </li>
+        <li>
+          <img src="https://picsum.photos/200/300?random=2" alt="Random Image 2" />
+          <!-- <p>Image 2</p> -->
+        </li>
+        <li>
+          <img src="https://picsum.photos/200/300?random=3" alt="Random Image 3" />
+          <!-- <p>Image 3</p> -->
+        </li>
+        <li>
+          <img src="https://picsum.photos/200/300?random=4" alt="Random Image 4" />
+          <!-- <p>Image 4</p> -->
+        </li>
+        <li>
+          <img src="https://picsum.photos/200/300?random=5" alt="Random Image 5"/>
+          <!-- <p>Image 5</p> -->
+        </li>
+        <li>
+          <img src="https://picsum.photos/200/300?random=6" alt="Random Image 6" />
+          <!-- <p>Image 6</p> -->
+        </li>
+        <li>
+          <img src="https://picsum.photos/200/300?random=7" alt="Random Image 7" />
+          <!-- <p>Image 7</p> -->
+        </li>
+        <!-- <br> -->
+        <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        
+      </ul>
+  </div>
+</body>
+
+<script>
+  // document.getElementById('nature').onclick = ()=>{
+  //   alert("Nature is beautiful!");
+  // }
+
+  // document.getElementById('nature').addEventListener('click', function(e) {
+    // now i want to learn about events
+    // alert("Nature is beautiful!");
+    // console.log(e);
+    // console.log(e.target);
+    // console.log(e.type);
+    // console.log(e.currentTarget);
+    // console.log(e.target.id);
+    // console.log(e.target.className);
+    // console.log(e.target.src);
+    // console.log(e.target.alt);
+    // console.log(e.target.width);
+    // console.log(e.target.height);
+    // console.log(e.target.style);
+    // console.log(e.target.parentElement);
+    // console.log(e.target.parentNode);
+    // console.log(e.target.parentElement.id);
+    // console.log(e.target.parentElement.className);
+    // console.log(e.target.parentElement.children);
+    // console.log(e.target.parentElement.firstChild);
+  // });
+
+  // Bubbling and capturing
+
+  // <!-- 
+  //   Event Bubbling and Capturing:
+  //   - Bubbling: When an event occurs on an element, it first runs the handlers on that element, 
+  //     then on its parent, then all the way up on other ancestors. This is called event bubbling.
+  //   - Capturing: In event capturing (also called trickling), the event is first captured by the 
+  //     outermost ancestor and propagated to the target element.
+  //   - By default, most event listeners use bubbling phase, but you can specify capturing by passing 'true' 
+  //     as the third argument to addEventListener.
+  // -->
+  // Give me short description of bubbling and capturing in comment 
+
+  
+  // document.getElementById('images').addEventListener('click', function(e) {
+  //     alert("You clicked on an image!");
+  // },false);
+
+  // document.getElementById('nature').addEventListener('click', function(e) {
+  //   alert("Nature is beautiful!");
+  //   e.stopPropagation(); // Prevents the event from bubbling up to parent elements
+  // },false);
+
+  // document.getElementById('google').addEventListener('click', function(e) {
+  //   e.preventDefault(); // Prevent the default action of the link 
+  //   e.stopPropagation(); // Prevents the event from bubbling up to parent elements
+  //   // alert("You clicked on Google link!");
+  //   console.log("Google link clicked");
+  // },false); 
+
+  document.querySelector('#images').addEventListener('click',(e)=>{
+
+    console.log(e.target.tagName);
+    console.log(e.target.parentNode);
+    if(e.target.tagName === 'IMG'){
+      let removeIt=e.target.parentNode;
+      removeIt.remove();
+    }
+    // removeIt.parentNode.removeChild(removeIt);
+  })
+
+  // types, timestemp, defaultPrevented, target, toElement currentTarget, srcElement, clientX, clientY, offsetX, offsetY, pageX, pageY, screenX, screenY, which, button, buttons, relatedTarget, detail, keyCode, charCode, code, location, repeat, isComposing
+  // altKey, ctrlKey, metaKey, shiftKey, getModifierState, view, detail, composedPath, composed, bubbles, cancelable, timeStamp, isTrusted
+
+  // document.getElementById('google').addEventListener('click', function(e) {
+  //   e.preventDefault(); // Prevent the default action of the link
+  //   alert("You clicked on Google link!");
+  //   console.log("Google link clicked");
+  // });
+  // // You can add more event listeners for other images or elements as needed
+  // document.getElementById('city').addEventListener('click', function(e) {
+  //   alert("City is beautiful!");
+  // });
+  // document.getElementById('images').addEventListener('click', function(e) {
+  //   if (e.target.tagName === 'IMG') {
+  //     alert("You clicked on an image!");
+  //   }
+  // });
+  // // You can also add event listeners to the entire images list
+  // document.getElementById('images').addEventListener('mouseover', function(e) {
+  //   if (e.target.tagName === 'IMG') {
+  //     e.target.style.border = "2px solid red"; // Change border color on hover
+  //   }
+  // });
+
+  // document.getElementById('images').addEventListener('mouseout', function(e) {
+  //   if (e.target.tagName === 'IMG') {
+  //     e.target.style.border = ""; // Remove border color when not hovering
+  //   }
+  // });
+  // // You can add more event listeners for other images or elements as needed
+  // document.getElementById('images').addEventListener('contextmenu', function(e) {
+  //   e.preventDefault(); // Prevent the default context menu
+  //   alert("Right-click is disabled on images!");
+  // });
+  // // You can also add event listeners for other events like dblclick, focus, blur, etc.
+  // document.getElementById('images').addEventListener('dblclick', function(e)
+  // {
+  //   if (e.target.tagName === 'IMG') {
+  //     alert("You double-clicked on an image!");
+  //   }
+  // });
+  // // You can also add event listeners for other events like keydown, keyup, etc.
+  // document.addEventListener('keydown', function(e) {
+  //   if (e.key === 'Escape') {
+  //     alert("You pressed the Escape key!");
+  //   }
+  // });
+
+  // // You can also add event listeners for other events like keypress, input, change, etc.
+  // document.getElementById('images').addEventListener('input', function(e) {
+  //   if (e.target.tagName === 'INPUT') {
+  //     alert("You typed something in an input field!");
+  //   }
+  // });
+
+  // // You can also add event listeners for other events like submit, reset, etc.
+  // document.getElementById('images').addEventListener('submit', function(e) {
+  //   e.preventDefault(); // Prevent the default form submission
+  //   alert("You submitted a form!");
+  // });
+
+  // // You can also add event listeners for other events like focus, blur, etc.
+  // document.getElementById('images').addEventListener('focus', function(e) {
+  //   if (e.target.tagName === 'INPUT') {
+  //     e.target.style.backgroundColor = "lightyellow"; // Change background color on focus
+  //   }
+  // }, true); // Use capture phase to catch focus events
+
+  // document.getElementById('images').addEventListener('blur', function(e) {
+  //   if (e.target.tagName === 'INPUT') {
+  //     e.target.style.backgroundColor = ""; // Remove background color when not focused
+  //   }
+  // }, true); // Use capture phase to catch blur events  
+
+
+
+</script>
+
+</html>

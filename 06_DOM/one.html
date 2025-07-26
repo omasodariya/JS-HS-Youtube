@@ -1,0 +1,141 @@
+<!-- Additional elements for DOM practice -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Learning</title>
+
+  <style>
+    .bg-black {
+      background-color: black;
+      color: white;
+      /* padding: 20px; */
+    }
+
+  </style>
+
+
+</head>
+
+
+
+<body class="bg-black">
+  <div>
+    <h1 id="title" class="heading"> DOM Learning </h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+  <ul id="item-list" class="list">
+  <li class="list-item">Item 1</li>
+  <li class="list-item">Item 2</li>
+  <li class="list-item">Item 3</li>
+  <li class="list-item">Item 4</li>
+</ul>
+
+<div class="container">
+  <p class="desc">This is a description paragraph.</p>
+  <span class="highlight">Highlighted text</span>
+  <a href="#" class="link">Sample Link</a>
+</div>
+
+<form id="sample-form">
+  <input type="text" name="username" class="input-field" placeholder="Username">
+  <input type="email" name="email" class="input-field" placeholder="Email">
+  <button type="submit" class="btn">Submit</button>
+</form>
+
+</body>
+
+  <script>
+      // DOM Manipulation Basics Tutorial
+
+      // 1. Selecting Elements
+
+      // By ID (returns a single element)
+      const title = document.getElementById('title'); // Good for unique elements
+
+      // By Class (returns HTMLCollection, NOT Array)
+      const listItems = document.getElementsByClassName('list-item'); // HTMLCollection
+
+      // By Tag Name (returns HTMLCollection)
+      const paragraphs = document.getElementsByTagName('p'); // HTMLCollection
+
+      // Query Selector (returns first match)
+      const firstListItem = document.querySelector('.list-item'); // Single element
+
+      // Query Selector All (returns NodeList, can use forEach)
+      const allListItems = document.querySelectorAll('.list-item'); // NodeList
+
+      // Reason: Different selectors are used based on what you need (single vs multiple elements).
+
+      // 2. Difference: HTMLCollection vs NodeList vs Array
+
+      // HTMLCollection and NodeList look like arrays but are not true arrays.
+      // You can't use array methods like map directly.
+      // Example:
+      try {
+        listItems.map(item => item.textContent); // Will give error: map is not a function
+      } catch (e) {
+        console.log('Error:', e.message); // Shows why you can't use map on HTMLCollection
+      }
+
+      // To use array methods, convert to array:
+      const listItemsArray = Array.from(listItems);
+      const texts = listItemsArray.map(item => item.textContent); // Works fine
+
+      // NodeList supports forEach, but not all array methods:
+      allListItems.forEach(item => console.log(item.textContent)); // Works
+
+      // 3. innerHTML vs innerText vs textContent
+
+      // innerHTML: Gets/sets HTML inside element (including tags)
+      console.log('innerHTML:', title.innerHTML); // Shows: DOM Learning
+
+      // innerText: Gets/sets visible text (ignores hidden text, respects CSS)
+      console.log('innerText:', title.innerText); // Shows: DOM Learning
+
+      // textContent: Gets/sets all text (including hidden, no formatting)
+      console.log('textContent:', title.textContent); // Shows: DOM Learning
+
+      // Mistake: Using innerHTML to get text will include tags, which may not be wanted.
+      // Example:
+      console.log('innerHTML of div:', document.querySelector('div').innerHTML); // Includes <h1> and <p> tags
+
+      // 4. Manipulating Elements
+
+      // Changing text
+      title.innerText = 'DOM Learning Updated'; // Updates visible text
+
+      // Changing HTML
+      title.innerHTML = '<span style="color:yellow">DOM Learning Updated</span>'; // Updates with HTML
+
+      // Changing attributes
+      const link = document.querySelector('.link');
+      link.setAttribute('href', 'https://example.com'); // Changes link destination
+
+      // Changing styles
+      link.style.color = 'red'; // Changes link color
+
+      // 5. Common Mistakes
+
+      // - Trying to use array methods on HTMLCollection/NodeList without converting
+      // - Using innerHTML when you only want text
+      // - Forgetting to select the correct element (querySelector returns only first match)
+
+      // 6. Why used:
+      // - Used different selectors to show their differences
+      // - Used innerHTML/innerText/textContent to explain their use cases
+      // - Converted collections to arrays to use array methods
+
+      // No event listeners used as requested.    
+
+
+
+
+
+
+  </script>
+
+</html>

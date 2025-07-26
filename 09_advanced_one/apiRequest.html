@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body style="background-color: #212121; color: orange;">
+  <h1 style="text-align: center;">Learning about XML Requests</h1>
+
+  <div style="max-width: 600px; margin: 32px auto;">
+    <table style="width:100%; border-collapse: collapse; background: #181818; color: orange; font-size: 18px;">
+      <thead>
+        <tr style="background: #333; color: #fff;">
+          <th style="padding: 10px; border: 1px solid #444;">State</th>
+          <th style="padding: 10px; border: 1px solid #444;">Value</th>
+          <th style="padding: 10px; border: 1px solid #444;">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #444;">UNSENT</td>
+          <td style="padding: 8px; border: 1px solid #444; text-align:center;">0</td>
+          <td style="padding: 8px; border: 1px solid #444;">Client has been created. open() not called yet.</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #444;">OPENED</td>
+          <td style="padding: 8px; border: 1px solid #444; text-align:center;">1</td>
+          <td style="padding: 8px; border: 1px solid #444;">open() has been called.</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #444;">HEADERS_RECEIVED</td>
+          <td style="padding: 8px; border: 1px solid #444; text-align:center;">2</td>
+          <td style="padding: 8px; border: 1px solid #444;">send() has been called, and headers and status are available.</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #444;">LOADING</td>
+          <td style="padding: 8px; border: 1px solid #444; text-align:center;">3</td>
+          <td style="padding: 8px; border: 1px solid #444;">Downloading; responseText holds partial data.</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #444;">DONE</td>
+          <td style="padding: 8px; border: 1px solid #444; text-align:center;">4</td>
+          <td style="padding: 8px; border: 1px solid #444;">The operation is complete.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hitesh-card">
+    <div class="photo">
+      <img id="img-url" src="" alt="">
+      <div class="followers">Follower Count is: <span id="follower"></span></div>
+    </div>
+  </div>
+
+<style>
+  .hitesh-card {
+    background: #181818;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    max-width: 340px;
+    margin: 40px auto 0 auto;
+    padding: 32px 24px 24px 24px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+  }
+  .hitesh-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  #img-url {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid orange;
+    box-shadow: 0 2px 12px rgba(255,152,0,0.15);
+    background: #333;
+    margin-bottom: 10px;
+  }
+  .followers {
+    font-size: 20px;
+    color: orange;
+    background: #232323;
+    padding: 10px 18px;
+    border-radius: 8px;
+    margin-top: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    font-weight: 500;
+  }
+  @media (max-width: 600px) {
+    .hitesh-card {
+      max-width: 95vw;
+      padding: 18px 6vw 16px 6vw;
+    }
+    #img-url {
+      width: 80px;
+      height: 80px;
+    }
+    .followers {
+      font-size: 16px;
+      padding: 7px 10px;
+    }
+  }
+</style>
+</body>
+<script>
+  const requestUrl='https://api.github.com/users/hiteshchoudhary';
+  const xhr=new XMLHttpRequest();
+  const img=document.querySelector("#img-url");
+  const followerSpan= document.querySelector("#follower");
+
+  xhr.open('GET',requestUrl);
+  // console.log("Here");
+  xhr.onreadystatechange = function(){
+    // important thing arrow function does not have this
+    console.log(xhr.readyState);
+    if(xhr.readyState===4){
+      const data = JSON.parse(this.responseText);
+      console.log(this.responseText);
+      console.log(data.followers);
+      img.src=data.avatar_url;
+      followerSpan.innerHTML=data.followers;
+    }
+  }
+  xhr.send();
+
+</script>
+</html>

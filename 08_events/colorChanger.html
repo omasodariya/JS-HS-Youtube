@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events | Color Changer</title>
+</head>
+<body>
+  <h1>Every Seconds background should be Changed</h1>
+  <div style="padding-top: 15px;">
+    <button id="start" style="padding: 5px 10px;">start</button>
+    <button id="stop" style="padding: 5px 10px;">stop</button>
+  </div>
+</body>
+
+<script>
+  const stopBtn = document.querySelector('#stop');
+  const startBtn = document.querySelector('#start');
+  const body = document.querySelector('body');
+
+  let Array = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+
+  let RandomNum = () => Array[Math.floor(Math.random()* Array.length)];
+
+  const getRandomColor= ()=>{
+    let string="#";
+    for(let i=0;i<6;i++){
+      string+=RandomNum();
+    }
+    return string;
+  }
+
+  const intervalFun=()=>{
+    // console.log(getRandomColor());
+    body.style.backgroundColor = getRandomColor();
+  }
+    
+  let intervalRef;
+  startBtn.addEventListener('click',()=>{
+    if(!intervalRef)
+    intervalRef= setInterval(intervalFun,1000);
+    
+   });
+
+
+  stopBtn.addEventListener('click',()=>{
+    clearInterval(intervalRef);
+    intervalRef = null; // Clear the reference to stop further intervals
+  });
+
+</script>
+
+
+</html>

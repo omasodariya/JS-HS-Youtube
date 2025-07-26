@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chai or Code</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+  
+
+  <script>
+    const div=document.createElement('h1'); // Creating a new div element
+    console.log(div);
+    div.className='heading'; // Adding a class to the new div
+    div.id = (Math.random()*100 +1)
+    // div.textContent=div.id; // Setting the text content of the new div
+    div.setAttribute('title', 'Random ID'); 
+    div.setAttribute('style', 'color: orange; font-size: 2rem;'); // Setting styles directly
+    div.style.padding = '20px'; // Setting padding using style property
+    // document.querySelector('body').appendChild(div); // Appending the new div to the body
+
+    // div.innerText = `Hello this is new div text`; // Not recommended for HTML content
+
+    const addText = document.createTextNode('Hello this is new div text'); // Creating a text node
+    div.appendChild(addText); // Appending the text node to the new div
+    document.body.appendChild(div); // Appending the new div to the body  
+
+
+  </script>
+
+</body>
+</html>

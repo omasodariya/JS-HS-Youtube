@@ -1,0 +1,38 @@
+#main-bg{
+  background: #212121;
+  color: orange;
+  padding: 0px 10px;
+}
+
+h1{
+  text-align: center;
+}
+
+.main-box{
+  display: flex; padding:5px;
+  flex-wrap: wrap;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.box{
+  width: 150px; 
+  height: 150px; 
+  font-size: large;
+  margin: 5px;
+}
+
+.color-red{
+  background-color: red; 
+}
+.color-green{
+  background-color: green; 
+}
+.color-blue{
+  background-color: blue; 
+}
+.color-yellow{
+  background-color: yellow; 
+}
+
+

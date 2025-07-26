@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM | Chai aur code</title>
+</head>
+
+<body style="background-color: #212121; color: #fff;">
+  <ul class="language">
+    <li>JavaScript</li>
+  </ul>
+</body>
+<script>
+  function addLanguage(langName) {
+    const li = document.createElement('li');
+    // li.innerHTML= langName; // Set the inner HTML of the list item
+    li.appendChild(document.createTextNode(langName)); // Create a text node with the language name
+
+    document.querySelector('.language').appendChild(li);
+  }
+
+
+  addLanguage('Python'); // Adding Python to the list
+  addLanguage('Java'); // Adding Java to the list 
+  addLanguage('C++'); // Adding C++ to the list
+
+
+  //Edit
+  const secondLang= document.querySelector("li:nth-child(2)")
+  // secondLang.innerHTML = 'golang'; // Changing the second language to JavaScript
+  const newli=document.createElement('li');
+  newli.innerHTML = 'Golang'; // Changing the second language to Golang
+  // newli.appendChild(document.createTextNode('Golang')); // Create a text node with
+  secondLang.replaceWith(newli); // Replacing the second language with Golang
+
+  // Edit
+  const firstChild= document.querySelector("li:first-child")
+  firstChild.outerHTML = '<li> Python </li>'; // Changing the first language to JavaScript
+
+  // remove
+  const lastLang = document.querySelector("li:last-child");
+  lastLang.remove(); // Removing the last language from the list 
+
+
+</script>
+
+</html>
